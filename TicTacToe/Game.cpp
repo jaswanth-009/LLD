@@ -11,9 +11,8 @@ Game::Game(int size, Player *p1, Player *p2) {
     player2 = p2;
 
     curPlayer = winner = nullptr;
-    status = Status::InProgress;
+    setState(new InProgressState());
     winningStrategy = nullptr;
-    std::cout << "Started game\n";
 }
 
 void Game::setWinningStrategy(WinningStrategy* ws) {
@@ -21,39 +20,54 @@ void Game::setWinningStrategy(WinningStrategy* ws) {
 }
 
 void Game::makeMove(int x, int y, Player *p) {
-    if (status == Status::Draw || status == Status::Winner) {
-        std::cout << "Game is already over\n";
-        return;
-    }
-
-    std::cout << "Trying to make move for [" << x << ", " << y << "]\n";
-
-    if (curPlayer == nullptr) {
-        curPlayer = p;
-    }
-    else if (curPlayer == p) {
-        std::cout << "Player " << p->getName() << " can not make 2 moves in a row\n";
-        return;
-    }
-
-    if (!board->placeSymbol(x,y,p)) {
-        std::cout << "Failed to make the move by " << p->getName() << "\n";
-    }
-
-    // after making move, check for winner
-    if (winningStrategy->isWinner(p, board)) {
-        status = Status::Winner;
-        std::cout << "Game won by player: " << p->getName() << "\n";
-        winner = p;
-        board->printBoard();
-    }
-    else if (board->getMovesCount() == board->getBoardSize()*board->getBoardSize()) {
-        status = Status::Draw;
-    }
-
-    curPlayer = p;
+    gameState->makeMove(this, p, x, y);
 }
 
 void Game::printBoard() {
     board->printBoard();
 }
+
+void Game::setState(State* st) {
+    gameState = st;
+}
+
+Board * Game::getBoard() const {
+    return board;
+}
+
+Player* Game::getWinner() const {
+    return winner;
+}
+
+void Game::setCurrentPlayer(Player *p) {
+    curPlayer = p;
+}
+
+void Game::switchCurrentPlayer() {
+    curPlayer = (curPlayer == player1) ? player1 : player2;
+}
+
+Player *Game::getCurrenPlayer() {
+    return curPlayer;
+}
+
+bool Game::checkWinner() {
+    Player* p = getCurrenPlayer();
+    if (winningStrategy->isWinner(p, board))
+        return true;
+    return false;
+}
+
+State *Game::getDrawState() {
+    return new DrawState();
+}
+
+State *Game::getWinnerState() {
+    return new WinnerState();
+}
+
+void Game::setWinner(Player *p) {
+    winner = p;
+}
+
+

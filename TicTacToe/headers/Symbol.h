@@ -17,7 +17,7 @@ inline std::string getSymbolName(Symbol sym) {
     switch (sym) {
         case symbol_x: return "x";
         case symbol_o: return "o";
-        case symbol_empty: return " ";
+        case symbol_empty: return "-";
         default: return " ?";
     }
     return "";

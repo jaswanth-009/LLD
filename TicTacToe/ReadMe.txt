@@ -41,6 +41,7 @@ Winning Strategy
 
 WinningStrategy Types
  - RowBased
+ - ColumnBased
 
 Game
  - Board

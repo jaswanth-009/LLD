@@ -52,6 +52,7 @@ Cell* Board::getCell(int x, int y) {
 }
 
 void Board::printBoard() const {
+    std::cout << "Board state: \n";
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             std::cout << getSymbolName(board[i][j]->getSymbol()) << " ";

@@ -8,4 +8,8 @@ add_executable(TicTacToe main.cpp
         Cell.cpp
         Board.cpp
         Game.cpp
-        RowBasedWinningStrategy.cpp)
+        RowBasedWinningStrategy.cpp
+        ColumnBasedWinningStrategy.cpp
+        InProgressState.cpp
+        WinnerState.cpp
+        DrawState.cpp)
