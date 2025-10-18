@@ -10,6 +10,8 @@ Game::Game(int size, Player *p1, Player *p2) {
     player1 = p1;
     player2 = p2;
 
+    uid = generateHash();
+
     curPlayer = winner = nullptr;
     setState(new InProgressState());
     winningStrategy = nullptr;
@@ -70,4 +72,13 @@ void Game::setWinner(Player *p) {
     winner = p;
 }
 
+std::string Game::generateHash() {
+    std::string name1 = player1->getName();
+    std::string name2 = player2->getName();
 
+    return name1 + "-" + name2;
+}
+
+std::string Game::getUid() const {
+    return uid;
+}

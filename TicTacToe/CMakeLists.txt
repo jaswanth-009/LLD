@@ -12,4 +12,5 @@ add_executable(TicTacToe main.cpp
         ColumnBasedWinningStrategy.cpp
         InProgressState.cpp
         WinnerState.cpp
-        DrawState.cpp)
+        DrawState.cpp
+        TicTacToeSystem.cpp)

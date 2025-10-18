@@ -9,10 +9,15 @@ Symbol
  - O
  - empty
 
-Status
+State
  - InProgress
  - Winner
  - Draw
+ - makeMove()
+
+InProgressState --> State
+WinnerState     --> State
+DrawState       --> State
 
 Player
  - name
@@ -48,11 +53,24 @@ Game
  - Player1
  - Player2
  - winner
- - Status
+ - State
  - Current Player
  - Winning Strategy
+ - getBoard()
  - makeMove()
  - setWinningStrategy()
- - printBoard();
+ - printBoard()
+ - setCurrentPlayer()
+ - swicthPlayers()
+ - checkWinner()
+ - setState()
+ - getCurrentPlayer()
+ - getWinnerState()
+ - getDrawState()
+ - generateHash()
+ - getUid()
 
-
+TicTacToeSystem --> Singleton
+ -> Can Manage multiple Games
+ -> createGame()
+ -> makeMove()

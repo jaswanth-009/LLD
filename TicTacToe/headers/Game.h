@@ -19,6 +19,7 @@ private:
     Player* winner;
     WinningStrategy* winningStrategy;
     State* gameState;
+    std::string uid;
 
 public:
     Game(int size, Player* p1, Player* p2);
@@ -35,5 +36,7 @@ public:
     State* getWinnerState();
     State* getDrawState();
     void setWinner(Player* p);
+    std::string generateHash();
+    std::string getUid() const;
 };
 #endif //TICTACTOE_GAME_H
