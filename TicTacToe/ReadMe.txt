@@ -81,8 +81,12 @@ Game -> GameSubject
 
 TicTacToeSystem --> Singleton
  -> Can Manage multiple Games
- -> createGame()
- -> makeMove()
+ - createGame()
+ - makeMove()
+ - printScoreBoard()
 
 
 Scoreboard -> GameObserver
+ - scores
+ - update()
+ - printScores()
