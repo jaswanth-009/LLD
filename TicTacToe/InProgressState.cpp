@@ -24,6 +24,9 @@ void InProgressState::makeMove(Game *game, Player *p, int r, int c) {
         game->setWinner(p);
         std::cout << "Game won by player: " << p->getName() << "\n";
         board->printBoard();
+
+        // update scoreboard
+        game->notifyObservers();
     }
     else if (board->getMovesCount() == board->getBoardSize()*board->getBoardSize()) {
         game->setState(game->getDrawState());

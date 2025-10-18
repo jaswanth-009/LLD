@@ -7,11 +7,13 @@
 #include <mutex>
 #include <unordered_map>
 #include "Game.h"
+#include "ScoreBoard.h"
 
 class TicTacToeSystem {
 private:
     static std::mutex m;
     static std::unordered_map<std::string, Game*> games;
+    static ScoreBoard* sb;
     TicTacToeSystem();
 
 public:
@@ -22,6 +24,7 @@ public:
     static std::string createGame(Player* p1, Player* p2, int n);
     static Game* getGame(std::string gid);
     static void setWinningStrategy(std::string uid, WinningStrategy* ws);
+    static void printScoreBoard();
     ~TicTacToeSystem();
 
 

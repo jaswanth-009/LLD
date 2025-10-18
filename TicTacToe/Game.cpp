@@ -82,3 +82,9 @@ std::string Game::generateHash() {
 std::string Game::getUid() const {
     return uid;
 }
+
+void Game::notifyObservers() {
+    for (int i = 0 ; i < observers.size(); i++) {
+        observers[i]->update(this);
+    }
+}

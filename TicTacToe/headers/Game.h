@@ -7,10 +7,11 @@
 #include "Board.h"
 #include "WinningStrategy.h"
 #include "DrawState.h"
+#include "GameSubject.h"
 #include "WinnerState.h"
 #include "InProgressState.h"
 
-class Game {
+class Game: public GameSubject {
 private:
     Board* board;
     Player* player1;
@@ -38,5 +39,6 @@ public:
     void setWinner(Player* p);
     std::string generateHash();
     std::string getUid() const;
+    void notifyObservers() override;
 };
 #endif //TICTACTOE_GAME_H

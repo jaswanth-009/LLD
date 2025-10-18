@@ -6,11 +6,16 @@
 
 #include <iostream>
 
+#include "headers/ScoreBoard.h"
+
 TicTacToeSystem* TicTacToeSystem::instance = nullptr;
 std::mutex TicTacToeSystem::m;
 std::unordered_map<std::string, Game*> TicTacToeSystem::games{};
+ScoreBoard* TicTacToeSystem::sb = nullptr;
 
 TicTacToeSystem::TicTacToeSystem() {
+    // Create a scoreboard and this scoreboard should observe each game created
+    sb = new ScoreBoard();
     std::cout << "Created instance for TicTacToeSystem\n";
 }
 
@@ -26,7 +31,7 @@ TicTacToeSystem *TicTacToeSystem::getInstance() {
 
 std::string TicTacToeSystem::createGame(Player *p1, Player *p2, int n) {
     Game* g = new Game(n, p1, p2);
-
+    g->addObserver(sb);
     std::string uid = g->getUid();
     games[uid] = g;
     return uid;
@@ -35,6 +40,12 @@ std::string TicTacToeSystem::createGame(Player *p1, Player *p2, int n) {
 TicTacToeSystem::~TicTacToeSystem() {
     for (auto [_, g] : games) {
         delete g;
+    }
+
+    games.clear();
+    if (sb != nullptr) {
+        delete sb;
+        sb = nullptr;
     }
 }
 
@@ -59,4 +70,8 @@ void TicTacToeSystem::setWinningStrategy(std::string uid, WinningStrategy *ws) {
         return;
     }
     games[uid]->setWinningStrategy(ws);
+}
+
+void TicTacToeSystem::printScoreBoard() {
+    sb->printScores();
 }

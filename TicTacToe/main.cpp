@@ -25,6 +25,8 @@ int main() {
 
     sys->makeMove(g1, p2, 2,2); // should not allow
 
+    sys->printScoreBoard();
+
     delete p1, p2;
     return 0;
 }

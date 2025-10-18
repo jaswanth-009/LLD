@@ -48,7 +48,16 @@ WinningStrategy Types
  - RowBased
  - ColumnBased
 
-Game
+GameSubject
+ - observers
+ - addObserver()
+ - removeObserver()
+ - notifyObservers()
+
+GameObserver
+ - update();
+
+Game -> GameSubject
  - Board
  - Player1
  - Player2
@@ -74,3 +83,6 @@ TicTacToeSystem --> Singleton
  -> Can Manage multiple Games
  -> createGame()
  -> makeMove()
+
+
+Scoreboard -> GameObserver
