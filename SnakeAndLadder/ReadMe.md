@@ -1,11 +1,11 @@
 ## SnakeAndLadder
 
--> MultiplayerGame
--> Minimum 2 players are required
--> Board size should be configurable
--> Snakes and Ladders must be configurable
--> Dice can be extensible
--> Dice mst generate outcomes randomly
+ - MultiplayerGame
+ - Board size should be configurable
+ - Minimum 2 players are required
+ - Snakes and Ladders must be configurable
+ - Dice can be extensible
+ - Dice mst generate outcomes randomly
 
 ## Entities
 
