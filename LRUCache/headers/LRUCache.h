@@ -15,11 +15,11 @@ class LRUCache {
         std::unordered_map<int, Node*> values;
         int capacity;
         std::mutex mtx;
+        void removeLruNode();
     public:
         LRUCache(int capacity);
         void put(int key, int value);
         int get(int key);
-        void removeLruNode();
         void printCache();
 };
 

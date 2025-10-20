@@ -37,7 +37,6 @@ int LRUCache::get(int key) {
 }
 
 void LRUCache::removeLruNode() {
-    std::lock_guard<std::mutex> l(mtx);
     Node* lruNode = dll->getLastNode();
     values.erase(lruNode->getKey());
     dll->removeLastNode();
