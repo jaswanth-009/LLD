@@ -4,15 +4,14 @@
 
 #ifndef PARKINGLOT_TIMEBASEDFEESSTRATEGY_H
 #define PARKINGLOT_TIMEBASEDFEESSTRATEGY_H
-#include "ParkingTicket.h"
+#include "FeeStrategy.h"
 #include  <unordered_map>
 
-class TimeBasedFeesStrategy {
+class TimeBasedFeesStrategy : public FeeStrategy {
 private:
     std::unordered_map<VehicleType, double> fares{};
 public:
     TimeBasedFeesStrategy();
-    void setFare(VehicleType type, double fare);
-    double calculateFees(ParkingTicket* ticket);
+    double calculateFees(ParkingTicket* ticket) override;
 };
 #endif //PARKINGLOT_TIMEBASEDFEESSTRATEGY_H

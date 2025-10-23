@@ -10,7 +10,7 @@
 #include <unordered_map>
 #include "ParkingLot.h"
 #include "ParkingTicket.h"
-#include "TimeBasedFeesStrategy.h"
+#include "FeeStrategy.h"
 
 class ParkingFloor {
 private:
@@ -23,7 +23,7 @@ private:
     std::vector<ParkingLot*> parkingLots;
     std::unordered_map<std::string, ParkingLot*> parked;
     std::unordered_map<std::string, ParkingTicket*> parkingTickets;
-    TimeBasedFeesStrategy* feeStrategy;
+    FeeStrategy* feeStrategy;
 
 public:
     ParkingFloor();
@@ -33,7 +33,7 @@ public:
     bool isFull();
     bool isVehiclePresent(std::string vNumber);
     void addSlot(ParkingLot* plot);
-    void setFeeStrategy(TimeBasedFeesStrategy* feeStrategy);
+    void setFeeStrategy(FeeStrategy* feeStrategy);
     ~ParkingFloor();
 };
 #endif //PARKINGLOT_PARKINGFLOOR_H

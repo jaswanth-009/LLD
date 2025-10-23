@@ -2,6 +2,7 @@
 #include <thread>
 
 #include "headers/ParkingFloor.h"
+#include "headers/TimeBasedFeesStrategy.h"
 
 int main() {
 
@@ -17,21 +18,20 @@ int main() {
     Vehicle* v1 = new Vehicle(VehicleType::Car, "qwerty");
     Vehicle* v2 = new Vehicle(VehicleType::SUV, "iuytr");
 
-    TimeBasedFeesStrategy* st = new TimeBasedFeesStrategy();
-    st->setFare(VehicleType::Truck, 40);
-    st->setFare(VehicleType::SUV, 30);
-    st->setFare(VehicleType::Car, 20);
-    st->setFare(VehicleType::Bike, 10);
+    FeeStrategy* st = new TimeBasedFeesStrategy();
 
     floor->setFeeStrategy(st);
 
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+
     floor->chekAndParkVehicle(v1);
+    std::cout << "Sleeping for 10 seconds\n";
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
     floor->chekAndParkVehicle(v2);
-
     std::cout << floor->unparkVehicle(v1) << std::endl;
 
+    std::cout << "Sleeping for 20 seconds\n";
     std::this_thread::sleep_for(std::chrono::seconds(20));
     std::cout << floor->unparkVehicle(v2) << std::endl;
 

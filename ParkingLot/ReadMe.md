@@ -31,18 +31,32 @@
  - parkVehicle()
  - unparkVehicle()
 
+### ParkingTicket
+ - Vehicle
+ - ParkingLot
+ - entry time
+ - exit time
+
 ### ParkingFloor
  - vector of ParkingLots
+ - list of parked vehicles
+ - count of available slots and filled slots
+ - map of parking tickets for parked vehicles
+ - fee strategy
+ - addSlot()
  - parkVehicle()
  - unparkVehicle()
+ - setFeeStrategy()
+ - isVehiclePresent()
 
-### PricingStrategy
+
+### FeeStrategy
  - virtual calculateFees()
 
-### FixedPricingStrategy -> PricingStrategy
+### FixedFeeStrategy -> FeeStrategy
  - calculateFees()
 
-### TimeBasedPricingStrategy -> PricingStrategy
+### TimeBasedFeeStrategy -> FeeStrategy
 - calculateFees()
 
 

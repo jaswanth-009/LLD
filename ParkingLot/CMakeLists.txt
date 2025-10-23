@@ -9,4 +9,5 @@ add_executable(ParkingLot main.cpp
         ParkingFloor.cpp
         ParkingTicket.cpp
         TimeBasedFeeStrategy.cpp
+        FixedFeeStrategy.cpp
 )

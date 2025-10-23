@@ -92,6 +92,6 @@ bool ParkingFloor::isVehiclePresent(std::string vNumber) {
 }
 
 
-void ParkingFloor::setFeeStrategy(TimeBasedFeesStrategy* feeStrategy) {
+void ParkingFloor::setFeeStrategy(FeeStrategy* feeStrategy) {
     this->feeStrategy = feeStrategy;
 }

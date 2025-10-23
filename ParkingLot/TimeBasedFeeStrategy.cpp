@@ -9,13 +9,10 @@ TimeBasedFeesStrategy::TimeBasedFeesStrategy() {
     std::cout << "Default fares are update\n";
     std::vector<VehicleType> vtypes = getAllVehicleTypes();
 
-    for (auto type: vtypes) {
-        fares[type] = 10.0;
-    }
-}
-
-void TimeBasedFeesStrategy::setFare(VehicleType type, double fare) {
-    fares[type] = fare;
+    fares[VehicleType::Bike] = 10;
+    fares[VehicleType::Car] = 20;
+    fares[VehicleType::SUV] = 30;
+    fares[VehicleType::Truck] = 40;
 }
 
 double TimeBasedFeesStrategy::calculateFees(ParkingTicket* ticket) {
