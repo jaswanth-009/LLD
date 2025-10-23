@@ -37,12 +37,12 @@
  - unparkVehicle()
 
 ### PricingStrategy
- - virtual getChargeForParkingLot()
+ - virtual calculateFees()
 
 ### FixedPricingStrategy -> PricingStrategy
- - getChargeForParkingLot()
+ - calculateFees()
 
 ### TimeBasedPricingStrategy -> PricingStrategy
-- getChargeForParkingLot()
+- calculateFees()
 
 
