@@ -14,6 +14,7 @@ class SearchComplete {
         LookUpStrategy* st;
         int k;
         Trie* root;
+        std::mutex m;
     public:
         SearchComplete(int k, std::vector<std::string> words, std::vector<int> freq);
         void setLookUpStrategy(LookUpStrategy* l);
@@ -21,5 +22,6 @@ class SearchComplete {
         void addCharToSearchString(char c);
         void printTopKMatches();
         void setKValue(int k);
+        void addMoreWordsToSerachBase(std::vector<std::string>& words, std::vector<int>& freq);
 };
 #endif //AUTOCOMPLETESUGGESTION_SEARCHCOMPLETE_H

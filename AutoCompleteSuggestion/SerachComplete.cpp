@@ -24,6 +24,7 @@ void SearchComplete::setLookUpStrategy(LookUpStrategy *l) {
 }
 
 void SearchComplete::removeLastCharFromSearchString() {
+    std::lock_guard<std::mutex> lg(m);
     if (this->searchWord.empty()) {
         std::cout << "Search word is empty\n";
         return;
@@ -34,7 +35,7 @@ void SearchComplete::removeLastCharFromSearchString() {
 }
 
 void SearchComplete::addCharToSearchString(char c) {
-
+    std::lock_guard<std::mutex> lg(m);
     if (c != '#') {
         this->searchWord.push_back(c);
     }
@@ -70,8 +71,18 @@ void SearchComplete::printTopKMatches() {
 }
 
 void SearchComplete::setKValue(int k) {
+    std::lock_guard<std::mutex> lg(m);
     this->k = k;
     std::cout << "Updated K value to: " << this->k << "\n";
     std::cout << "Getting top " << this->k << " matches\n";
     printTopKMatches();
+}
+
+void SearchComplete::addMoreWordsToSerachBase(std::vector<std::string> &words, std::vector<int> &freq) {
+    std::lock_guard<std::mutex> lg(m);
+    for (int i = 0; i < words.size(); i++) {
+        int f = freq[i];
+
+        insert(words[i], root, f);
+    }
 }
